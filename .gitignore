@@ -1,0 +1,21 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+/literature/
+
+
+# Кэш Python
+__pycache__/
+*.pyc
+
+# Файлы PyCharm
+.idea/
+
+# Логи и временные файлы
+*.log
+*.tmp
+
+# Виртуальное окружение
+venv/
+env/

@@ -2,15 +2,14 @@ __author__ = "Arsentyeva N."
 """Модуль с функциями к задачам 5-8"""
 
 import math
+import random
 import numpy as np
 
-# Ввод значений, todo
+# Ввод значений
 def inputList(n: int):
     """Ввод n значений"""
-    lst = []
-    for i in range(1, n + 1):
-        a = float(input(f"a{i}: "))  # ввод значений a1,..an
-        lst.append(a)
+    #lst = [float(input(f"a{a}: ")) for a in range(n)]  # ввод значений a1,..an
+    lst = [random.randint(-10,10) for a in range(n)]  # случайно число от -10 до 10
     return lst
 
 
