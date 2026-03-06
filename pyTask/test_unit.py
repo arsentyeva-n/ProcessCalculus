@@ -3,6 +3,8 @@ __author__ = "Arsentyeva"
 import unit
 import numpy as np
 
+"""Модуль тестов к задачам 5-8"""
+
 def test_136o():
     """Тест задачи 136o"""
     assert round(unit._136o([1,2,3,4,5]), 5) == 22.43228

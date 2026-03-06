@@ -1,10 +1,10 @@
 __author__ = "Arsentyeva N."
-
+"""Модуль с функциями к задачам 5-8"""
 
 import math
 import numpy as np
 
-# Ввод значений
+# Ввод значений, todo
 def inputList(n: int):
     """Ввод n значений"""
     lst = []

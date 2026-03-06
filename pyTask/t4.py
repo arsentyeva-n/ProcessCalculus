@@ -12,7 +12,7 @@ try:
         for i in range(1, n + 1):
             s = s + 1 / (2 * i) ** 2
 
-        print(s)
+        print(s)  # резльутат
 
 except ValueError:
     print("введите целое число")
