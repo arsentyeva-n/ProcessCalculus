@@ -1,14 +1,17 @@
+__author__ = "Arsentyeva"
+
 import sys          # для работы с аргументами командной строки
 import math
 
 def main():
     print(sys.argv) # выводим все аргументы
-    args = sys.argv[1:] # получаем аргументы пользователя и обрезаем 1 аргумент (имя файла)
+    args = sys.argv[1:] # получаем аргументы пользователя и обрезаем 1 аргумент (имя исполняемого файла)
 
+    # pattern matching (сопоставление с образцом)
     match args:
         case []:
             print("Программа запущена без аргументов")
-        case ["sum", *other]:
+        case ["sum", *other]:                           # пример использования: python3 cmdUI.py 1 2 3
             num = [float(x) for x in other]
             print(f"Сумма: {sum(num)}")
         case ["multy", *other]:

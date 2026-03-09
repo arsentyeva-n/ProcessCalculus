@@ -8,8 +8,8 @@ import numpy as np
 # Ввод значений
 def inputList(n: int):
     """Ввод n значений"""
-    #lst = [float(input(f"a{a}: ")) for a in range(n)]  # ввод значений a1,..an
-    lst = [random.randint(-10,10) for a in range(n)]  # случайно число от -10 до 10
+    lst = [float(input(f"a{a}: ")) for a in range(n)]  # ввод значений a1,..an
+    #lst = [random.randint(-10,10) for a in range(n)]  # случайно число от -10 до 10
     return lst
 
 
@@ -22,12 +22,12 @@ def _136o(lst: list):
     return s
 
 
-# 178 задача
-def _178(lst: list):
-     """Определение количества членов ak последовательности a1,...,an: являющихся квадратами четных чисел;"""
+# 178 задача todo обобщение
+def _178(lst: list, x: int):
+     """Определение количества членов ak последовательности a1,...,an: являющихся квадратами чисел четных x;"""
      k = 0
      for a in lst:
-         if math.sqrt(a) % 2 == 0:
+         if math.sqrt(a) % x == 0:
              k += 1
      return k
 
