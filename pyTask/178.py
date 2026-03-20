@@ -3,7 +3,6 @@ __author__ = "Arsentyeva"
 import unit
 
 # https://ivtipm.github.io/Programming/Glava07/index07.htm#z178
-# в) являющихся квадратами четных чисел;
 
 print(unit._178.__doc__) # вывод коментариев функции
 
