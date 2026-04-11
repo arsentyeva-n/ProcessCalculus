@@ -1,4 +1,5 @@
 __author__ = "Arsentyeva"
+"""Работа yield"""
 
 def factorials(n):
     '''Вывод факториала n!'''
@@ -15,8 +16,10 @@ for x in factorials(n):
     print(f"{k}! =", x)
     k += 1
 
-# test
+
+# test todo
+assert list(factorials(0)) == []
 assert list(factorials(1)) == [1]
 assert list(factorials(6)) == [1,2,6,24,120,720]
-assert list(factorials(0)) == []
+assert list(factorials(10)) == [1,2,6,24,120,720,5040,40320,362880,3628800]
 

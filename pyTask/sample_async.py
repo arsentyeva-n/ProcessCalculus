@@ -1,35 +1,57 @@
 __author__ = "Arsentyeva"
 
+"""
+Реализовать функцию, которая будут выполнять HTTP запросы.
+Асинхронный код. Запросы выполняются в одном потоке, используя asyncio + httpx.AsyncClient и asyncio.create_task / gather.
+"""
+
+# Асинхронный (asynchronous) режим — выполнение операций организовано так,
+# что одна задача может инициировать другую и не ждать её завершения — продолжать работать дальше.
+# Результат другой операции приходит позже и обрабатывается отдельно:
+# через функцию обратного вызова (callback), await, событие и т.д.).
+
 import asyncio
+import httpx
 import time
 
 
-# async
-async def async_task(task_name, duration):
-    print(f"Начало обработки --- {task_name}")
-    await asyncio.sleep(duration)  # Не блокирующее ожидание
-    # имитация долгой I / O операции
-    # await означает, что в этом месте корутина приостанавливается и даёт возможность выполнять другим корутинам,
-    # до момента когда sleep не закончится
-    print(f"Выполнено --- {task_name}")
-    return f"{task_name}"
+
+async def async_task(client,url):
+    """
+    Принимает url сайта, отправляет запрос и получает ответ ( напр. статус 200 успешное соединение, 400 ошибка)
+    """
+    response = await client.get(url)
+    return response.status_code
 
 
 async def async_main():
-    start_time = time.time()
+    """
+    Главная асинхронная функция
+    """
+    urls = [
+        "https://jsonplaceholder.typicode.com/posts/1",
+        "https://jsonplaceholder.typicode.com/users/1",
+        "https://jsonplaceholder.typicode.com/todos",
+        "https://jsonplaceholder.typicode.com/posts/1/comments",
+        "https://jsonplaceholder.typicode.com/photos"
+           ] * 3 # для больших запросов
 
-    # задачи
-    task1 = asyncio.create_task(async_task("Обработка данных", 3))
-    task2 = asyncio.create_task(async_task("Отправление запроса",1))
+    # Подключение через контекстный менеджер (как try\catch)
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        start_time = time.time()
+        # Добавление задач в очередь задач (event loop)
+        tasks = [asyncio.create_task(async_task(client, url)) for url in urls]
+        # Параллельное выполнение нескольких задач, в данном случае запросов
+        results = await asyncio.gather(*tasks)
+        timer = time.time() - start_time
 
-    # Параллельное выполнение двух задач
-    results = await asyncio.gather(task1, task2)
-    print("Результаты:", *results)
-
-
-    timer = time.time() - start_time
-    print(f"\nВсе задачи выполнены за {timer:.2f} секунд")
+        #print("Результаты:", *results)
+        # #print(f"\nВсе задачи выполнены за {timer:.2f} секунд")
+        return timer
 
 
 if __name__ == "__main__":
     asyncio.run(async_main())
+
+
+

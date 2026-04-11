@@ -1,10 +1,11 @@
 __author__ = "Arsentyeva"
+"""cmd arguments, pattern matching"""
 
-import sys          # для работы со списком аргументов командной строки
+import sys
 import math
 
 def main():
-    print(sys.argv) # выводим все аргументы
+   # print(sys.argv) # выводим все аргументы
     args = sys.argv[1:] # получаем аргументы пользователя и обрезаем 1 аргумент (имя исполняемого файла)
 
     # pattern matching (сопоставление с образцом|шаблоном)
@@ -17,16 +18,15 @@ def main():
         case ["prod", *other]:
             num = [float(x) for x in other]
             print(f"Произведение: {math.prod(num)}")
-        case "help",:
+        case "--help",: #  todo
             print("Справка:")
             print("sum n1 n2 n3 ... - сумма чисел")
             print("prod n1 n2 n3 ... - произведение чисел")
-        case _:
+        case _: # любое значение
             print("Неизвестная команда")
 
 
 if __name__ == "__main__":
     main()
-
 
 
